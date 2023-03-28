@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header__inner">
+                <a href="">
+                    Main
+                </a>
+                <a href="">
+                    Shop
+                </a>
+                <a href="">
+                    Cart
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card__inner">
+            {% for i in Nike %}
+            <div class="card">
+                <img width="100%" src="{{i.image.url}}" alt="">
+                <h3>{{i.title}}</h3>
+                <p>{{i.price}}</p>
+                <button>Add to cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>
