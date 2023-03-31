@@ -21,8 +21,14 @@ from main.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main),
-    path('detail/', detail)
+    path('', main, name='main'),
+    path('detail/<int:id>', detail, name='detail'),
+    path('favorites/<int:id>', favorites, name='favorites'),
+    path('favpage/', favorites_page, name='favpage'),
+    path('delete/<int:id>', remove_from_favpage, name='delete'),
+    path('cart/<int:id>', cart, name='cart'),
+    path('cartpage/', cart_page, name='cartpage'),
+    path('deleete/<int:id>', remove_from_cartpage, name='deleete')
 ]
 
 urlpatterns += static(
