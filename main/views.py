@@ -40,10 +40,10 @@ def remove_from_favpage(req,id):
 
 
 def cart(req, id):
-    cart_products = req.session.get('favorite_products', [])
+    cart_products = req.session.get('cart_products', [])
     cart_products.append(id)
     st = set(cart_products)
-    req.session['favorite_products'] = list(st)
+    req.session['cart_products'] = list(st)
     nike = NewBalance.objects.all()
     context = {'Nike':nike}
     print(st)
@@ -60,3 +60,8 @@ def remove_from_cartpage(req,id):
     cart_products.remove(id)
     req.session['cart_products'] = cart_products
     return HttpResponseRedirect('/')
+
+def about_us(req):
+    info = req.session.get('info', [])
+    context = {'info':info}
+    return render(req, 'aboutus.html', context)

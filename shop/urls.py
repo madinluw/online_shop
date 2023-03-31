@@ -28,7 +28,8 @@ urlpatterns = [
     path('delete/<int:id>', remove_from_favpage, name='delete'),
     path('cart/<int:id>', cart, name='cart'),
     path('cartpage/', cart_page, name='cartpage'),
-    path('deleete/<int:id>', remove_from_cartpage, name='deleete')
+    path('deleete/<int:id>', remove_from_cartpage, name='deleete'),
+    path('aboutus/', about_us, name='info')
 ]
 
 urlpatterns += static(
