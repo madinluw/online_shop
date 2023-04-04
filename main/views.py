@@ -65,6 +65,3 @@ def about_us(req):
     info = req.session.get('info', [])
     context = {'info':info}
     return render(req, 'aboutus.html', context)
-
-def auth(req):
-    return render(req, 'auth.html')

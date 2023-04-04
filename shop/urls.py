@@ -18,6 +18,7 @@ from django.urls import path
 from .settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
 from main.views import *
+from user.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +31,8 @@ urlpatterns = [
     path('cartpage/', cart_page, name='cartpage'),
     path('deleete/<int:id>', remove_from_cartpage, name='deleete'),
     path('aboutus/', about_us, name='info'), 
-    path('auth/', auth, name='auth')
+    path('register/', sign_in, name='sign_in'),
+    path('sign_up/', sign_up, name='sign_up'),
 ]
 
 urlpatterns += static(

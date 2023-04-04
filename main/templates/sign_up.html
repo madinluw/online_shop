@@ -23,12 +23,23 @@
     </header>
     
     <div class="container">
-        <form action="">
-            <input type="text" placeholder="NickName...">
-                <input id="pass" type="password" placeholder="Password...">
-                <input id="pass2" type="password" placeholder="Password check...">
-                <input onclick="changePass()" class="authBtn" type="button" value="Показать пароль">
-            <input style="background-color: rgb(209, 115, 0);" class="authBtn" type="button" value="Регистрация">
+        {% if form.errors %}
+        {% for i in form %}
+        {% for error in i.errors %}
+        {{ error|escape }}
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+        <form action="{% url 'sign_up' %}" method="POST">
+            {% csrf_token %}
+            {{form.first_name}}
+            {{form.last_name}}
+            {{form.username}}
+            {{form.email}}
+            {{form.password1}}
+            {{form.password2}}
+            <input onclick="changePass()" class="authBtn" type="button" value="Показать пароль">
+            <button style="background-color: rgb(209, 115, 0);" class="authBtn" type="submit">Регистрация</button>
         </form>
     </div>
     <script>
