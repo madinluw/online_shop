@@ -90,3 +90,24 @@ header{
 .authBtn:hover{
     transform: scale(1.1);
 }
+
+
+.cart{
+    display: flex;
+    align-items: center;
+}
+
+.cart_left .cart_right{
+    width: 50%;
+}
+
+.product_row{
+    width: 100%;
+    display: flex;
+}
+
+.product_row img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}

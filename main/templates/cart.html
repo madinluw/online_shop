@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
@@ -21,7 +21,7 @@
                 <a href="{% url 'favpage' %}">
                     Favorites
                 </a>
-                <a href="{% url 'sing_in' %}">
+                <a href="{% url 'sign_in' %}">
                     Sign in
                 </a>
                 <a href="{% url 'sign_up' %}">
@@ -31,15 +31,24 @@
         </div>
     </header>
     <div class="container">
-        <div class="card__inner">
-            {% for i in product %}
-            <div class="card">
-                <img width="100%" src="{{i.image.url}}" alt="">
-                <h3><a href="{% url 'detail' i.id %}">{{i.title}}</a></h3>
-                <p>{{i.price}}</p>
-                <a href="{% url 'deleete' i.id %}">Delete</a>
+        <div class="cart">
+            <div class="card_left">
+                {% for i in product %}
+                <div class="product_row">
+                    <img src="{{i.image.url}}" alt="">
+                    <div>
+                        <h3><a href="{% url 'detail' i.id %}">{{i.title}}</a></h3>
+                        <p>{{i.price}}</p>
+                        <a href="{% url 'deleete' i.id %}">Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            <div class="cart_right">
+                <p>Итоговая цена: {}</p>
+                <p>Количество товаров: {}</p>
+                <a href="">Офформить заказ</a>
+            </div>
         </div>
     </div>
 </body>

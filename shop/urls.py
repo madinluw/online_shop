@@ -31,7 +31,7 @@ urlpatterns = [
     path('cartpage/', cart_page, name='cartpage'),
     path('deleete/<int:id>', remove_from_cartpage, name='deleete'),
     path('aboutus/', about_us, name='info'), 
-    path('register/', sign_in, name='sign_in'),
+    path('sign_in/', sign_in, name='sign_in'),
     path('sign_up/', sign_up, name='sign_up'),
 ]
 
