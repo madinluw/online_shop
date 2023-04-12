@@ -20,25 +20,34 @@
         <header>
             <div class="container">
                 <div class="header__inner">
-                    <a href="{% url 'main' %}">
-                        Main
-                    </a>
-                    <a href="{% url 'info' %}">
-                        About us
-                    </a>
-                    <a href="{% url 'favpage' %}">
-                        Favorites
-                    </a>
-                    <a href="{% url 'cartpage' %}">
-                        Cart
-                    </a>
+					<a href="{% url 'main' %}">
+						Main
+					</a>
+					<a href="{% url 'info' %}">
+						About us
+					</a>
+					<a href="{% url 'favpage' %}">
+						Favorites
+					</a>
+					<a href="{% url 'cartpage' %}">
+						Cart
+					</a>
+					{% if not user.is_authenticated %}
 					<a href="{% url 'sign_in' %}">
 						Sign in
 					</a>
 					<a href="{% url 'sign_up' %}">
 						Sign up
 					</a>
-                </div>
+					{% else %}
+					<a href="">
+						{{user.username}}
+					</a>
+					<a href="{% url 'logout' %}">
+						Log out
+					</a>
+					{% endif %}
+				</div>
             </div>
         </header>
         

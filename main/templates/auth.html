@@ -23,17 +23,16 @@
     </header>
     
     <div class="container">
-        <form action="">
-            <input type="text" placeholder="NickName...">
-                <input id="pass" type="password" placeholder="Password...">
-                <input id="pass2" type="password" placeholder="Password check...">
-                <input onclick="changePass()" class="authBtn" type="button" value="Показать пароль">
-            <input style="background-color: rgb(209, 115, 0);" class="authBtn" type="button" value="Регистрация">
+        <form action="{% url 'sign_in' %}" method="POST">
+            {% csrf_token %}
+            {{form.username}}
+            {{form.password}}
+            <input onclick="changePass()" class="authBtn" type="button" value="Показать пароль">
+            <button style="background-color: rgb(209, 115, 0);" class="authBtn" type="submit">Вход</button>
         </form>
     </div>
     <script>
         let pass = document.querySelector('#pass')
-        let pass2 = document.querySelector('#pass2')
         let passBtn = document.querySelector('#passBtn')
         function changePass() {
             if (pass.type == 'password') {

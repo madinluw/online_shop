@@ -33,6 +33,8 @@ urlpatterns = [
     path('aboutus/', about_us, name='info'), 
     path('sign_in/', sign_in, name='sign_in'),
     path('sign_up/', sign_up, name='sign_up'),
+    path('logout', logout, name='logout'),
+    path('order/', order, name='order'),
 ]
 
 urlpatterns += static(

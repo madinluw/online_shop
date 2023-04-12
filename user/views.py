@@ -3,6 +3,7 @@ from .models import User
 from .forms import LoginForm, RegistrationForm, UserProfileForm
 from django.http import HttpResponseRedirect
 from django.contrib import auth
+from django.contrib import messages, auth
 # Create your views here.
 
 def sign_in(req):
@@ -13,11 +14,13 @@ def sign_in(req):
             password = req.POST['password']
             user = auth.authenticate(username=username,password=password)
             if user:
-                auth.last_login(req. user)
+                auth.login(req, user)
+                messages.success(req, f'{username} вы успешно прошли авторизацию')
                 return HttpResponseRedirect('/')
     else:
-        return render(req, 'auth.html')
-    return render(req, 'auth.html')
+        form = LoginForm()
+    context = {'form':form}
+    return render(req, 'auth.html', context)
 
 def sign_up(req):
     if req.method == 'POST':
@@ -29,3 +32,8 @@ def sign_up(req):
         form = RegistrationForm()
     context = {'form':form}
     return render(req, 'sign_up.html', context)
+
+def logout(req):
+    auth.logout(req)
+    return HttpResponseRedirect('/')
+

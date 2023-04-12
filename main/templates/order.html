@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header__inner">
+                <a href="{% url 'main' %}">
+                Main
+                </a>
+                <h1>Order page</h1>
+            </div>
+        </div>
+    </header>   
+
+    <div class="container">
+        <div class="form">
+            <form action="{% url 'order' %}" method="POST">
+                {% csrf_token %}
+                <h1>Оформить заказ</h1>
+                <input name="address" type="text" placeholder="Type your address...">
+                <input name="phone number" type="text" placeholder="Type your phone number...">
+                <input name="message" type="text" placeholder="Type your message...">
+                <button class="authBtn" type="submit">Оформить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

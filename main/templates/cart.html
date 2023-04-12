@@ -10,24 +10,36 @@
 </head>
 <body>
     <header>
-        <div class="container">
+        <div clss="container">
             <div class="header__inner">
-                <a href="{% url 'main' %}">
-                    Main
-                </a>
-                <a href="{% url 'info' %}">
-                    About us
-                </a>
-                <a href="{% url 'favpage' %}">
-                    Favorites
-                </a>
-                <a href="{% url 'sign_in' %}">
-                    Sign in
-                </a>
-                <a href="{% url 'sign_up' %}">
-                    Sign up
-                </a>
-            </div>
+				<a href="{% url 'main' %}">
+					Main
+				</a>
+				<a href="{% url 'info' %}">
+					About us
+				</a>
+				<a href="{% url 'favpage' %}">
+					Favorites
+				</a>
+				<a href="{% url 'cartpage' %}">
+					Cart
+				</a>
+				{% if not user.is_authenticated %}
+				<a href="{% url 'sign_in' %}">
+					Sign in
+				</a>
+				<a href="{% url 'sign_up' %}">
+					Sign up
+				</a>
+				{% else %}
+				<a href="">
+					{{user.username}}
+				</a>
+				<a href="{% url 'logout' %}">
+					Log out
+				</a>
+				{% endif %}
+			</div>
         </div>
     </header>
     <div class="container">
@@ -45,9 +57,9 @@
                 {% endfor %}
             </div>
             <div class="cart_right">
-                <p>Итоговая цена: {}</p>
-                <p>Количество товаров: {}</p>
-                <a href="">Офформить заказ</a>
+                <p>Итоговая цена: {{total_price}}</p>
+                <p>Количество товаров: {{amount}}</p>
+                <a href="{% url 'order' %}">Оформить заказ</a>
             </div>
         </div>
     </div>
