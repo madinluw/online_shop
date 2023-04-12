@@ -42,6 +42,7 @@
 			</div>
         </div>
     </header>
+    {% if amount > 0 %}
     <div class="container">
         <div class="cart">
             <div class="card_left">
@@ -63,5 +64,8 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <h1>Тут ничего нету!!!</h1>
+    {% endif %}
 </body>
 </html>

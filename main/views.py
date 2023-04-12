@@ -100,12 +100,11 @@ def order(req):
                 order = order,
                 product = i
             )
-            products.append(i)
-
-
+            products.append(i.title)
+        print(products)
         send_mail(
             f'Заказ от {req.user}',
-            f'На адрес {req.POST.get("address")}\nНомер телефона: {req.POST.get("phone number")}\nCooбщение: {req.POST.get("message")}\nТовар: {[i.title for i in products]}',
+            f'На адрес {req.POST.get("address")}\nНомер телефона: {req.POST.get("phone number")}\nCooбщение: {req.POST.get("message")}\nТовар: {", ".join(products)if len(products) > 1 else products[0]}',
             'from@example.com',
             ['muratbekovamadinaaa08@gmail.com'],
             fail_silently=False,
