@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 import uuid
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+
+from services.main import order_data_sender_to_email
 # Create your views here.
 
 def main(req):
@@ -101,14 +103,8 @@ def order(req):
                 product = i
             )
             products.append(i.title)
-        print(products)
-        send_mail(
-            f'Заказ от {req.user}',
-            f'На адрес {req.POST.get("address")}\nНомер телефона: {req.POST.get("phone number")}\nCooбщение: {req.POST.get("message")}\nТовар: {", ".join(products)if len(products) > 1 else products[0]}',
-            'from@example.com',
-            ['muratbekovamadinaaa08@gmail.com'],
-            fail_silently=False,
-        )
+        order_data_sender_to_email(req.user, req.POST.get('address'), req.POST.get('phone number'), req.POST.get('massage'), products)
+
         cart_products = req.session.get('cart_products', [])
         cart_products = []
         req.session['cart_products'] = cart_products
